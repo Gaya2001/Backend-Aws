@@ -28,7 +28,7 @@ jobs:
         docker push gaya2001/backend:latest
 
   deploy:
-    runs-on: [self-hosted, aws]  # Using self-hosted runner on AWS EC2
+    runs-on: self-hosted  # Using self-hosted runner on AWS EC2
 
     steps:
     - name: Checkout repository
@@ -36,9 +36,9 @@ jobs:
 
     - name: Pull Backend Docker image from Docker Hub
       run: |
-        docker pull your-dockerhub-username/backend:latest
+        docker pull gaya2001/backend:latest
 
     - name: Deploy Backend Docker container
       run: |
-        cd /path/to/your/project
-        docker-compose -f docker-compose.yml up -d  # Assuming you have docker-compose set up
+        docker run --name Backend-Aws -p 5000:5000 gaya2001/backend:latest
+
